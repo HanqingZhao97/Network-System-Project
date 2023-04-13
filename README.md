@@ -1,7 +1,5 @@
 # Project 1
 
-CSE 124 Fall 2022 Project 1 Starter Code
-
 This repository contains the utilities that you'll use for project 1.  The
 utilities are provided in binary form for a few common systems/architectures.
 
