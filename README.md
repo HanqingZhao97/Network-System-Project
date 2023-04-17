@@ -1,93 +1,32 @@
-# Project 1
+# Network System Projects
 
-This repository contains the utilities that you'll use for project 1.  The
-utilities are provided in binary form for a few common systems/architectures.
+This repository contains the class projects for network system class.
 
-## Sort specification
+## Project0
 
 This project will read, write, and sort files consisting of zero or
 more records.  A record is a 100 byte binary key-value pair, consisting
-of a 10-byte key and a 90-byte value.  Each key should be interpreted
-as an unsigned 10-byte (80-bit) integer.  Your sort should be ascending,
+of a 10-byte key and a 90-byte value. The sort is ascending,
 meaning that the output should have the record with the smallest key first,
 then the second-smallest, etc.
 
-## Utilities
+## Project1
 
-To aid you in generating input files and validating the output of your program,
-we’ve provided you with a few utilities in binary format. Currently there are
-utilities for x86_64-based Linux and the Intel- and Apple M1 mac.
+This project is an extension of the sort program you had implemented in project 0. In this second project, you are going to implement a multi-node sorting program with sockets and Go’s net package. The main objective of this project is for you to get familiarized with basic socket level programming, handling servers and clients, and some popular concurrency control methods that golang provides natively.
 
-### Gensort
+## Project2
 
-Gensort generates random input.  If the 'randseed' parameter is provided,
-the given seed is used to ensure deterministic output.
+Build a simple web server that implements a subset of the HTTP/1.1 protocol specification called TritonHTTP. The server will read data from the client, using the framing and parsing techniques to interpret one or more requests (if the client is using pipelined requests). Every time the server reads in a full request, it will service that request and send a response back to the client. The web server will then continue waiting for future client connections. Your server should be implemented in a concurrent manner, so that it can process multiple client requests overlapping in time.
 
-'size' can be provided as a non-negative integer to generate that many
-bytes of output. However human-readable strings can be used as well,
-such as "10 mb" for 10 megabytes, "1 gb" for one gigabyte", "256 kb"
-for 256 kilobytes, etc.
+## Project3
 
-If the specified size is not a multiple of 100 bytes, the requested
-size will be rounded up to the next multiple of 100.
+Create a cloud-based file storage service called SurfStore. SurfStore is a networked file storage application that is based on Dropbox, and lets you sync files to and from the “cloud”. Implemented the cloud service, and a client which interacts with your service via gRPC.
 
-Usage: utils/{os_architecture}/bin/gensort outputfile size
-  -randseed int
-    	Random seed
+## Project4
 
-### Showsort
+Extended from previous project SurfStore, simulate having many block store servers, and implement a mapping algorithm that maps blocks to servers. Implement a mapping approach based on consistent hashing. When the MetaStore server is started, the program will create a consistent hash ring in MetaStore.
 
-Showsort shows the records in the provided file in a human-readable
-format, with the key followed by a space followed by an
-abbreviated version of the value.
+## Project5
 
-Usage: utils/{os_architecture}/bin/showsort inputfile
+Based on previous SurfStore, modified the metadata server to make it fault tolerant based on the RAFT protocol. Implement a RaftSurfstoreServer which functions as a fault tolerant MetaStore. Each RaftSurfstoreServer will communicate with other RaftSurfstoreServers via GRPC. Each server is aware of all other possible servers (from the configuration file), and new servers do not dynamically join the cluster (although existing servers can “crash” via the Crash api). Leaders will be set through the SetLeader API call, so there are no elections.
 
-### Valsort
-
-Valsort scans the provided input file to check if it is sorted.
-
-Usage: utils/{os_architecture}/bin/valsort inputfile
-
-## Your sort program
-
-You are to write a sort program that reads in an input file and
-produces a sorted version of the output file.
-
-Usage: bin/sort inputfile outputfile
-
-## Building
-
-To build your sort program:
-
-$ go build -o bin/sort src/sort.go
-
-## Verifying your sort implementation
-
-A simple way to verify the correctness of your implementation of sort
-is to run the standard unix sort command on the output of 'showsort'.
-For example, to generate, sort, and verify a 1 megabyte file:
-
-```bash
-$ utils/linux-amd64/bin/gensort example1.dat "1 mb"
-No random seed provided, using current timestamp
-Initializing the random seed to 1641144051385376000
-Requested 1 mb (= 1048576) bytes
-Increasing size to 1048600 to be divisible by 100
-
-$ bin/sort example1.dat example1-sorted.dat
-2022/01/02 09:21:16 sort.go:59: Read in 10486 records
-
-$ utils/linux-amd64/bin/valsort example1-sorted.dat
-File is sorted
-
-$ utils/linux-amd64/bin/showsort example1.dat | sort > example1-chk.txt
-$ utils/linux-amd64/bin/showsort example1-sorted.dat| sort > example1-sorted-chk.txt
-$ diff example1-chk.txt example1-sorted-chk.txt
-```
-
-This last 'diff' should simply return to the command prompt. If it
-indicates any differences that means that there is an error
-in your sort routine.
-
-You can try this verification for different file sizes, including 0 bytes and 100 bytes
