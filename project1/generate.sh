@@ -1,0 +1,18 @@
+#!/bin/bash
+
+utils/linux-amd64/bin/gensort testcases/testcase4/input-0.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-1.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-2.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-3.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-4.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-5.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-6.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-7.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-8.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-9.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-10.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-11.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-12.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-13.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-14.dat "100 mb"
+#utils/linux-amd64/bin/gensort testcases/testcase3/input-15.dat "100 mb"
